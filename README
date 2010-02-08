@@ -1,0 +1,57 @@
+
+               PushScript 0.9: a JavaScript implementation of Push
+                                  02/02/2009
+                             jk [at] spiderland.org
+
+== WHAT IS PUSHSCRIPT? ==
+
+PushScript is a simple JavaScript implementation of the Push language which
+runs in web-browsers.  Push is a stack-based interpreted language designed
+for evolutionary computation.  PushScript can allow users to run genetic 
+programming experiments directly in a web-broswer.  
+
+Details on the Push language are available here:
+
+http://hampshire.edu/lspector/push.html
+
+
+== WHAT CAN PUSHSCRIPT DO? ==
+
+PushScript can run interpreted programs in a web-browser as part of a 
+distributed genetic programming run.  In conjunction with AJAX, PushScript
+can be used to download programs, evaluate them, and then upload the 
+results back to a server.
+
+
+== WHAT CAN'T PUSHSCRIPT DO? ==
+
+Though PushScript can be used to evalute programs for genetic programming
+experiments, it does not include a full genetic programming environment.  It
+currently lacks genetic operators and population control functionality 
+typically found in such environments.  Currently such tasks must be done 
+by the server.
+
+
+== DOCUMENTATION AND VERSION HISTORY ==
+
+This is the initial release of PushScript, version 0.1.  There is currently 
+no documentation, but the file push.js is small and should be easy to 
+understand.  Please contact the author with any questions.
+
+
+== WHO WROTE PUSHSCRIPT? ==
+
+PushScript was written by Jon Klein (jk [at] spiderland.org), based on the 
+Push language design specification by Lee Spector 
+(lspector [at] hampshire.edu).
+
+
+== WHAT HAS PUSHSCRIPT BEEN USED FOR? ==
+
+Please see the following paper for information on how PushScript has been
+used to solve genetic programming problems.
+
+Klein, J., and L. Spector. 2007. Unwitting Distributed Genetic Programming 
+via Asynchronous JavaScript and XML. In Proceedings of the Genetic and 
+Evolutionary Computation Conference (GECCO-2007), pp. 1628-1635. ACM Press. 
+(http://hampshire.edu/lspector/unwitting-gecco-2007/)

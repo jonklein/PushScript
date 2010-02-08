@@ -1,0 +1,281 @@
+<html>
+<head><title>PushScript!</title></head>
+
+<style>
+
+body {
+  font-family: Arial;
+  font-size: 14px;
+  background: #fff7ea;
+  padding: 0px;
+  margin: 0px;
+}
+
+#container {
+  background: #ffffff;
+  border: 1px solid #c1c1c1;  
+  width: 750px;
+  margin: auto;
+  padding: 0px 15px 0px 15px;
+  -moz-border-radius-bottomleft: 12px;
+  -moz-border-radius-bottomright: 12px;
+  -webkit-border-bottom-left-radius: 12px;
+  -webkit-border-bottom-right-radius: 12px;
+
+}
+
+#results {
+  border: 1px dashed;
+  margin: 10px;
+  padding: 10px;
+  background-color: #CCCCCC;
+  font-family: monospace;
+}
+
+table.instructions {
+  border: 1px dashed;
+  margin: 2px;
+  font-family: monospace;
+  font-size: 9px;
+  table-layout: fixed;
+}
+
+table.instructions td {
+  vertical-align: text-top;
+}
+
+</style>
+
+<script language="JavaScript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
+<script language="JavaScript" src="push.js"></script>
+
+<script type="text/javascript">
+
+function runPushProgramFromForm() {
+  var result = pushRunString( $('#pushProgram').val() );
+  $('#results').html( result );
+}
+
+function processJSONResponse(data) {
+  $('#pushProgram').val(data.program);
+  runPushProgramFromForm();
+}
+
+function runPushProgramFromServer() {
+  $.ajax( { url: 'http://spiderland.org/PushScript/randompush.cgi', dataType: 'jsonp', success: processJSONResponse } );
+}
+
+</script>
+
+<body>
+
+<div id="container">
+<p>
+<center><h3>PushScript: A Subset-Of-Push Interpreter in JavaScript</h3>
+The <a href="http://hampshire.edu/lspector/push.html">Push</a> language in a web browser.
+</center>
+</p>
+
+<p><b>Download PushScript 0.9:</b></p
+
+<ul>
+<li><a href="push.js">push.js</a>: PushScript source code
+<li><a href="README.txt">README.txt</a>: README file for the 0.9 release
+</ul>
+
+
+<p>
+This is a demo of a subset-of-<a href="http://hampshire.edu/lspector/push.html">Push</a> interpreter written in JavaScript.  This allows Push programs to be executed in the client-side web browser when a user views a webpage.
+</p>
+
+<p>
+
+Most, but not all, standard Push instructions are implemented in PushScript.  Currently implemented instructions:
+
+</p>
+<table class="instructions" align="center">
+<tr>
+
+<tr>
+<td width="16%">Float</td>
+<td width="16%">Integer</td>
+<td width="16%">Boolean</td>
+<td width="16%">Code</td>
+<td width="16%">Exec</td>
+<td width="16%">Name</td>
+</tr>
+
+<tr>
+<td width="16%">
+  <li>FLOAT.+
+  <li>FLOAT.-
+  <li>FLOAT./
+  <li>FLOAT.*
+  <li>FLOAT.%
+  <li>FLOAT.>
+  <li>FLOAT.<
+  <li>FLOAT.=
+  <li>FLOAT.COS
+  <li>FLOAT.DEFINE
+  <li>FLOAT.DUP
+  <li>FLOAT.FLUSH
+  <li>FLOAT.FROMBOOLEAN
+  <li>FLOAT.FROMINTEGER
+  <li>FLOAT.MAX
+  <li>FLOAT.MIN
+  <li>FLOAT.POP
+  <li>FLOAT.RAND
+  <li>FLOAT.ROT
+  <li>FLOAT.SHOVE
+  <li>FLOAT.SIN
+  <li>FLOAT.STACKDEPTH
+  <li>FLOAT.SWAP
+  <li>FLOAT.TAN
+  <li>FLOAT.YANK
+  <li>FLOAT.YANKDUP
+  <li>float constants
+</td>
+
+<td width="16%">
+  <li>INTEGER.+
+  <li>INTEGER.-
+  <li>INTEGER./
+  <li>INTEGER.*
+  <li>INTEGER.%
+  <li>INTEGER.>
+  <li>INTEGER.<
+  <li>INTEGER.=
+  <li>INTEGER.DEFINE
+  <li>INTEGER.DUP
+  <li>INTEGER.FLUSH
+  <li>INTEGER.FROMBOOLEAN
+  <li>INTEGER.FROMFLOAT
+  <li>INTEGER.MAX
+  <li>INTEGER.MIN
+  <li>INTEGER.POP
+  <li>INTEGER.RAND
+  <li>INTEGER.ROT
+  <li>INTEGER.SHOVE
+  <li>INTEGER.STACKDEPTH
+  <li>INTEGER.SWAP
+  <li>INTEGER.YANK
+  <li>INTEGER.YANKDUP
+  <li>integer constants
+</td>
+
+<td width="16%">
+  <li>BOOLEAN.=
+  <li>BOOLEAN.AND
+  <li>BOOLEAN.DEFINE
+  <li>BOOLEAN.DUP
+  <li>BOOLEAN.FLUSH
+  <li>BOOLEAN.FROMFLOAT
+  <li>BOOLEAN.FROMINTEGER
+  <li>BOOLEAN.NOT
+  <li>BOOLEAN.OR
+  <li>BOOLEAN.POP
+  <li>BOOLEAN.RAND
+  <li>BOOLEAN.ROT
+  <li>BOOLEAN.SHOVE
+  <li>BOOLEAN.STACKDEPTH
+  <li>BOOLEAN.SWAP
+  <li>BOOLEAN.YANK
+  <li>BOOLEAN.YANKDUP
+  <li>boolean constants ("TRUE"/"FALSE")
+</td>
+
+<td width="16%">
+  <li>CODE.=
+  <li>CODE.ATOM
+  <li>CODE.CAR
+  <li>CODE.CDR
+  <li>CODE.CONS
+  <li>CODE.CONTAINS
+  <li>CODE.DEFINE
+  <li>CODE.DO
+  <li>CODE.DO*
+  <li>CODE.DO*COUNT
+  <li>CODE.DO*RANGE
+  <li>CODE.DO*TIMES
+  <li>CODE.DUP
+  <li>CODE.FLUSH
+  <li>CODE.IF
+  <li>CODE.LENGTH
+  <li>CODE.LIST
+  <li>CODE.NOOP
+  <li>CODE.NTH
+  <li>CODE.NULL
+  <li>CODE.SHOVE
+  <li>CODE.POP
+  <li>CODE.QUOTE
+  <li>CODE.ROT
+  <li>CODE.SHOVE
+  <li>CODE.STACKDEPTH
+  <li>CODE.SWAP
+  <li>CODE.YANK
+  <li>CODE.YANKDUP
+</td>
+
+<td width="16%">
+  <li>EXEC.=
+  <li>EXEC.DEFINE
+  <li>EXEC.DO*COUNT
+  <li>EXEC.DO*RANGE
+  <li>EXEC.DO*TIMES
+  <li>EXEC.DUP
+  <li>EXEC.FLUSH
+  <li>EXEC.IF
+  <li>EXEC.K
+  <li>EXEC.POP
+  <li>EXEC.ROT
+  <li>EXEC.S
+  <li>EXEC.SHOVE
+  <li>EXEC.STACKDEPTH
+  <li>EXEC.SWAP
+  <li>EXEC.Y
+  <li>EXEC.YANK
+  <li>EXEC.YANKDUP
+</td>
+
+<td width="16%">
+  <li>NAME.=
+  <li>NAME.DUP
+  <li>NAME.FLUSH
+  <li>NAME.POP
+  <li>NAME.RAND
+  <li>NAME.ROT
+  <li>NAME.SHOVE
+  <li>NAME.STACKDEPTH
+  <li>NAME.SWAP
+  <li>NAME.YANK
+  <li>NAME.YANKDUP
+</td>
+
+</table>
+
+</p>
+</p>
+
+<p>
+Type in a Push program below:
+</p>
+
+<input type="text" id="pushProgram" value="( ( 5.0 4.0 FLOAT./ 7.0 FLOAT.+ ) ( 2 3 INTEGER.> ) )" size=80>
+<input type="submit" value="Run Push Program" onclick="return runPushProgramFromForm()">
+
+<p>
+We can dynamically load a Push program from a server, execute it in a web-browser and submit the results back to the server.  Note that this does not require any actual user interaction and can be done continuously while a user views a webpage.
+</p>
+
+<input type="submit" value="Run Random Push Program From Server" onclick="return runPushProgramFromServer()">
+
+<div id="results">
+</div>
+
+
+PushScript written by <a href="http://www.artificial.com">jon klein</a>.<br>
+Push language designed by <a href="http://hampshire.edu/lspector">Lee Spector</a>.
+
+</div>
+
+</body>
