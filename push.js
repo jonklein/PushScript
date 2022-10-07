@@ -196,7 +196,7 @@ function pushInstructionFromFloat(inInterpreter, inStack) {
 }
 
 function pushInstructionFromBoolean(inInterpreter, inStack) {
-  if (inStack.length > 0) {
+  if (inInterpreter.boolStack.length > 0) {
     var num = 0;
 
     if (inInterpreter.boolStack.pop() == true) num = 1;
@@ -682,6 +682,19 @@ function pushInterpreter() {
     this.intStack.splice(0, this.intStack.length);
     this.boolStack.splice(0, this.boolStack.length);
     this.nameStack.splice(0, this.nameStack.length);
+  };
+
+  this.valueOf = function () {
+    return JSON.parse(
+      JSON.stringify({
+        boolean: this.boolStack,
+        code: this.codeStack.map(String),
+        exec: this.execStack,
+        float: this.floatStack,
+        integer: this.intStack,
+        name: this.nameStack,
+      })
+    );
   };
 
   this.toString = function () {
@@ -1212,11 +1225,9 @@ function pushParseString(inString) {
  *
  * @return The string state of the interpreter
  */
-function pushRunString(inProgram) {
+export function pushRunString(inProgram) {
   var program = pushParseString(inProgram);
   var interpreter = new pushInterpreter();
-
   var info = pushRunProgram(interpreter, program);
-
-  return interpreter.toString();
+  return interpreter;
 }
