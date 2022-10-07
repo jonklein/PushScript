@@ -1,0 +1,24 @@
+{
+  "name": "pushscript",
+  "version": "0.9.0",
+  "description": "a JavaScript implementation of Push",
+  "main": "push.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonklein/PushScript.git"
+  },
+  "keywords": [],
+  "author": "Jon Klein",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jonklein/PushScript/issues"
+  },
+  "homepage": "https://github.com/jonklein/PushScript#readme",
+  "devDependencies": {
+    "mocha": "10.0.0"
+  }
+}
